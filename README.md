@@ -1,4 +1,10 @@
-# 🐄 FarmTech Solutions - Sistema de Visão Computacional (Fase 6)
+# FIAP - Faculdade de Informática e Administração Paulista
+
+<p align="center">
+<a href= "https://www.fiap.com.br/"><img src="https://tse2.mm.bing.net/th/id/OIP.3xs_MSeNC0T1UOrJaCEqWAHaEK?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+</p>
+
+<br># 🐄 FarmTech Solutions - Sistema de Visão Computacional (Fase 6)
 
 Este repositório contém o desenvolvimento de um sistema de inteligência artificial voltado para a **saúde animal e segurança patrimonial**, desenvolvido para a FarmTech Solutions. O projeto compara abordagens de detecção de objetos (YOLOv5) e classificação de imagens (CNN Customizada).
 

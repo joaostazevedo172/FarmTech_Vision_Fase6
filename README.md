@@ -14,6 +14,10 @@ Este repositório contém o desenvolvimento de um sistema de inteligência artif
 Confira a explicação detalhada do projeto, a execução do código e a análise dos resultados no link abaixo:
 👉 **https://www.youtube.com/watch?v=yF7pLSVUty4** 
 
+## 📺 GitHub
+Confira o link do GitHub
+👉 **https://github.com/joaostazevedo172/FarmTech_Vision_Fase6** 
+
 
 ## 👨‍🌾 Integrantes do Grupo
 - <a href="#">Miriã Leal Mantovani</a>

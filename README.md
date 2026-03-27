@@ -71,4 +71,10 @@ Para a FarmTech Solutions, avaliamos três abordagens distintas para garantir a 
 4. Execute as células em ordem para reproduzir os treinos e testes.
 
 ---
+# 🌟 5. Ir Além: Sistema de Detecção em Tempo Real (Webcam)
+Para a entrega do "Ir Além", optamos por implementar o sistema de visão computacional utilizando a **Webcam do PC integrada ao Python via OpenCV**, lendo os pesos customizados (`best.pt`) gerados na Entrega 1.
 
+**Justificativa Arquitetural:** A escolha do processamento via Webcam local simulou uma estação de monitoramento de segurança patrimonial da FarmTech Solutions. A imagem é capturada em tempo real (Input), processada localmente pela rede neural YOLOv5 usando a CPU/GPU do computador, e devolve um frame com a Bounding Box (Output). Esta abordagem elimina a latência de rede que teríamos com um hardware externo via Wi-Fi, garantindo resposta imediata para alertas de invasão ou monitoramento animal.
+
+*(Adicione aqui um Print da sua tela mostrando a webcam detectando o animal)*
+*(Adicione aqui o Link do seu vídeo extra do YouTube mostrando a câmera funcionando)*

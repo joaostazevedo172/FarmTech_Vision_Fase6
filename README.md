@@ -71,10 +71,51 @@ Para a FarmTech Solutions, avaliamos três abordagens distintas para garantir a 
 4. Execute as células em ordem para reproduzir os treinos e testes.
 
 ---
-# 🌟 5. Ir Além: Sistema de Detecção em Tempo Real (Webcam)
-Para a entrega do "Ir Além", optamos por implementar o sistema de visão computacional utilizando a **Webcam do PC integrada ao Python via OpenCV**, lendo os pesos customizados (`best.pt`) gerados na Entrega 1.
+# 🌟 5. Entrega "Ir Além" 1: Sistema de Visão Computacional em Tempo Real
 
-**Justificativa Arquitetural:** A escolha do processamento via Webcam local simulou uma estação de monitoramento de segurança patrimonial da FarmTech Solutions. A imagem é capturada em tempo real (Input), processada localmente pela rede neural YOLOv5 usando a CPU/GPU do computador, e devolve um frame com a Bounding Box (Output). Esta abordagem elimina a latência de rede que teríamos com um hardware externo via Wi-Fi, garantindo resposta imediata para alertas de invasão ou monitoramento animal.
+Para cumprir a primeira opção do "Ir Além" proposta no edital, desenvolvemos um protótipo funcional de uma central de monitoramento de segurança para a **FarmTech Solutions**. Implementamos a captura e detecção de objetos em tempo real utilizando a **Webcam do computador integrada ao Python (via OpenCV)**, inferindo diretamente sobre os pesos da nossa rede YOLOv5 customizada (`best.pt` - treinado com 60 épocas).
 
-*(Adicione aqui um Print da sua tela mostrando a webcam detectando o animal)*
-*(Adicione aqui o Link do seu vídeo extra do YouTube mostrando a câmera funcionando)*
+### 🏗️ Justificativa Arquitetural e Decisões Técnicas
+
+A escolha do processamento via Webcam local (simulando uma estação base de monitoramento) em vez da transmissão via ESP32-CAM foi pautada nos seguintes critérios de engenharia:
+
+1. **Processamento Local e Baixa Latência:** Ao processar o *feed* de vídeo localmente usando a CPU/GPU da máquina, eliminamos o gargalo e a latência da transmissão de imagens via Wi-Fi. Em um cenário real de segurança patrimonial, o tempo de resposta precisa ser imediato;
+2. **Integração Eficiente (OpenCV + PyTorch):** O pipeline de dados captura o frame (Input), envia para o tensor da YOLOv5, e o OpenCV devolve o frame processado com a *Bounding Box* (Output) em frações de segundo, sem gargalos de memória;
+3. **Prevenção de Falsos Alarmes:** Parametrizamos o sistema com um *Confidence Threshold* de 40%. Isso garante que o sistema da FarmTech seja "cauteloso", alertando a presença de cães ou gatos apenas quando houver alta certeza, evitando acionamentos desnecessários do sistema de segurança.
+
+### 📸 Evidências de Funcionamento (Captura de Tela)
+
+Abaixo, apresentamos a captura de tela do nosso sistema processando o ambiente em tempo real e detectando as classes treinadas com sucesso (sem falsos positivos):
+
+![Print da Webcam FarmTech](ir_alem1.png)
+
+---
+
+### 🎥 Demonstração em Vídeo (YouTube)
+
+Para comprovar a fluidez, a baixa latência e a acurácia do sistema em tempo real, gravamos uma demonstração prática da arquitetura em pleno funcionamento.
+
+**▶️ Assista à demonstração técnica no link abaixo:** [🔗 Clique aqui para assistir ao vídeo no YouTube](https://www.youtube.com/watch?v=C760QoJoc_o)
+
+---
+
+### 📊 Figura: Arquitetura do Sistema de Monitoramento Local
+
+```text
++-------------------+       (1) Captura em Tempo Real       +-------------------------+
+|                   | ------------------------------------> |                         |
+|   Webcam do PC    |                                       |   Python + OpenCV       |
+|  (FarmTech Input) | <------------------------------------ |  (Processamento Local)  |
+|                   |       (4) Exibição do Alerta          |                         |
++-------------------+                                       +-------------------------+
+                                                              |                 ^
+                                             (2) Envia Frame  |                 | (3) Retorna Bounding Box
+                                                              v                 |
+                                                    +---------------------------------+
+                                                    |                                 |
+                                                    |   Rede Neural YOLOv5 (PyTorch)  |
+                                                    |   Pesos Customizados (best.pt)  |
+                                                    |                                 |
+                                                    +---------------------------------+
+
+

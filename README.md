@@ -87,7 +87,7 @@ A escolha do processamento via Webcam local (simulando uma estação base de mon
 
 Abaixo, apresentamos a captura de tela do nosso sistema processando o ambiente em tempo real e detectando as classes treinadas com sucesso (sem falsos positivos):
 
-![Print da Webcam FarmTech](ir_alem1.png)
+![Print da Webcam FarmTech](images/ir_alem1.png)
 
 ---
 
@@ -95,7 +95,7 @@ Abaixo, apresentamos a captura de tela do nosso sistema processando o ambiente e
 
 Para comprovar a fluidez, a baixa latência e a acurácia do sistema em tempo real, gravamos uma demonstração prática da arquitetura em pleno funcionamento.
 
-**▶️ Assista à demonstração técnica no link abaixo:** [🔗 Clique aqui para assistir ao vídeo no YouTube](https://www.youtube.com/watch?v=C760QoJoc_o)
+**▶️ Assista à demonstração técnica no link abaixo:** [🔗 Clique aqui para assistir ao vídeo no YouTube](https://youtu.be/C760QoJoc_o)
 
 ---
 
@@ -117,5 +117,60 @@ Para comprovar a fluidez, a baixa latência e a acurácia do sistema em tempo re
                                                     |   Pesos Customizados (best.pt)  |
                                                     |                                 |
                                                     +---------------------------------+
+```
+
+---
+# 🌟 6. Entrega "Ir Além" 2: Transfer Learning e Segmentação Semântica
+
+Para consolidar o portfólio de Inteligência Artificial da **FarmTech Solutions**, esta etapa bônus explora abordagens no estado da arte da Visão Computacional. O objetivo prático é validar duas hipóteses fundamentais para otimizar o nosso pipeline de classificação de imagens (Cães vs. Gatos), provando que técnicas avançadas garantem resultados superiores com menos dados.
+
+## 🏗️ Abordagens Técnicas
+
+1. **Segmentação Automática (Remoção de Ruído Visual):** Utilização de uma rede de segmentação avançada (U^2-Net via `rembg`) para isolar o objeto de interesse e gerar uma máscara matemática.
+2. **Transfer Learning com Fine-Tuning:** Implementação do aprendizado por transferência utilizando a rede **MobileNetV2**, previamente treinada no vasto *dataset* ImageNet.
+
+---
+
+### 📸 Evidência 1: Processo de Segmentação Semântica (U^2-Net)
+
+Abaixo, a comprovação visual da aplicação do pipeline de segmentação automática na imagem `cachorro1.jpg`. O sistema gera a máscara matemática e aplica o recorte sobre o fundo preto, deixando apenas o animal visível para o modelo.
+
+![Resultado da Segmentação](images/resultado_segmentacao.png)
+
+---
+
+### 📊 Evidência 2: Resultados do Treinamento (Transfer Learning)
+
+Diferente da CNN construída do zero, o modelo pré-treinado (MobileNetV2) saltou para **100% de acurácia** logo nas primeiras épocas.
+
+![Logs de Acurácia](images/acuracia_ir-alem2.png)
+
+---
+
+### 🎯 Evidência 3: Classificação da Imagem Segmentada
+
+Para cumprir integralmente as etapas do projeto, pegamos a imagem resultante do processo de segmentação (fundo preto) e a submetemos à nossa rede de Transfer Learning (MobileNetV2) recém-treinada. Como demonstrado no print abaixo, a rede conseguiu classificar corretamente a morfologia do animal, validando o pipeline ponta a ponta.
+
+![Classificação da Imagem Segmentada](images/comprovacao_acuracia.png)
+
+---
 
 
+### 🎥 Demonstração em Vídeo (Ir Além 2)
+
+Para comprovar a execução do código de segmentação e o treinamento de Transfer Learning na prática, gravamos um vídeo explicativo demonstrando o código funcionando:
+
+**▶️ Assista à demonstração técnica no link abaixo:** [🔗 Clique aqui para assistir ao vídeo no YouTube](https://www.youtube.com/watch?v=a2KVqBM6Mx8)
+
+---
+
+### 📈 Conclusão e Validação das Hipóteses (Ir Além 2)
+
+Após a implementação das duas abordagens avançadas, chegamos às seguintes validações para a **FarmTech Solutions**:
+
+#### 1. Hipótese do Transfer Learning vs. CNN do Zero
+* **A rede pré-treinada performou melhor?** **Absolutamente sim.** * **Justificativa:** Enquanto a CNN desenvolvida do zero apresentou instabilidade e exigiu mais épocas para aprender características básicas (bordas, formas), a **MobileNetV2** (com *Transfer Learning* e *Fine-Tuning*) atingiu **100% de acurácia logo nas primeiras épocas**. O congelamento dos pesos (*ImageNet*) permitiu que a rede utilizasse seu vasto conhecimento prévio de extração de características, necessitando apenas de uma leve adaptação na camada final (densa) para a classificação binária de Cães e Gatos, sendo infinitamente mais eficiente para *datasets* pequenos.
+
+#### 2. Hipótese da Segmentação Semântica
+* **Pré-segmentar o objeto facilita a classificação?** **Sim, em contextos de alto ruído visual.**
+* **Justificativa:** A aplicação da rede **U^2-Net** para a geração da máscara e remoção do *background* forçou o modelo a ignorar totalmente o "contexto" da imagem (como grama, móveis ou cercas da fazenda). Isso garante que a rede neural não crie falsas correlações (por exemplo, associar a cor verde da grama à presença de um cão). Ao entregar apenas os pixels correspondentes à morfologia do animal, reduzimos o risco de *overfitting* de cenário, tornando o sistema de segurança muito mais robusto e confiável.

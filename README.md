@@ -70,6 +70,14 @@ Para a FarmTech Solutions, avaliamos três abordagens distintas para garantir a 
 3. Certifique-se de que o seu Google Drive contenha a pasta `dataset_visao_computacional` conforme a estrutura exigida no notebook.
 4. Execute as células em ordem para reproduzir os treinos e testes.
 
+# 🐄 FarmTech Solutions - Sistema de Visão Computacional (Fase 6)
+
+Este repositório contém o desenvolvimento de um sistema de inteligência artificial voltado para a **saúde animal e segurança patrimonial**.
+
+> **Clique no botão abaixo para abrir o projeto diretamente no Google Colab:**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joaostazevedo172/FarmTech_Vision_Fase6/blob/main/notebooks/JoaoPedroSantosAzevedo_rm566701_pbl_fase6.ipynb)
+
 ---
 # 🌟 5. Entrega "Ir Além" 1: Sistema de Visão Computacional em Tempo Real
 
